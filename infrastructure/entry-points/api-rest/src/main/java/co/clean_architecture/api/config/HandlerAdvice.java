@@ -1,6 +1,6 @@
 package co.clean_architecture.api.config;
 
-import co.clean_architecture.api.dto.ErrorResponse;
+import co.clean_architecture.model.error.ErrorResponse;
 import co.clean_architecture.model.exception.DomainException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,6 +20,7 @@ public class HandlerAdvice {
             case NOT_FOUND -> HttpStatus.NOT_FOUND;
             case CONFLICT -> HttpStatus.CONFLICT;
             case UNAUTHORIZED -> HttpStatus.UNAUTHORIZED;
+            case FORBIDDEN -> HttpStatus.FORBIDDEN;
             case VALIDATION -> HttpStatus.BAD_REQUEST;
         };
         ErrorResponse errorResponse = ErrorResponse.builder()

@@ -4,5 +4,6 @@ public enum ErrorTypeEnum {
     NOT_FOUND,
     VALIDATION,
     UNAUTHORIZED,
-    CONFLICT
+    CONFLICT,
+    FORBIDDEN
 }

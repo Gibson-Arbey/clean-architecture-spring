@@ -1,4 +1,4 @@
-package co.clean_architecture.api.dto;
+package co.clean_architecture.model.error;
 
 import lombok.Builder;
 import lombok.Getter;
