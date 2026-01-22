@@ -1,6 +1,7 @@
-package co.clean_architecture.security.config;
+package co.clean_architecture.security.handler;
 
 import co.clean_architecture.security.exception.JwtAuthenticationException;
+import co.clean_architecture.security.exception.UserStatusException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Component
-public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class JwtAuthenticationHandler implements AuthenticationEntryPoint {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -24,11 +25,12 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
             AuthenticationException ex
     ) throws IOException {
 
-        String code = "AUTH_001";
+        String code = "AUTHENTICATION_INVALID";
 
-        if (ex instanceof JwtAuthenticationException jwtEx) {
-            code = jwtEx.getCode();
+         if (ex instanceof UserStatusException userStatusEx) {
+            code = userStatusEx.getCode();
         }
+
 
         co.clean_architecture.model.error.ErrorResponse error = co.clean_architecture.model.error.ErrorResponse.builder()
                 .code(code)

@@ -1,7 +1,9 @@
 package co.clean_architecture.security.config;
 
 import co.clean_architecture.model.security.gateways.TokenGateway;
-import co.clean_architecture.security.jwt.JwtAuthenticationFilter;
+import co.clean_architecture.model.user.gateways.UserRepository;
+import co.clean_architecture.security.filter.JwtAuthenticationFilter;
+import co.clean_architecture.security.filter.UserStatusFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +27,11 @@ public class SecurityBeansConfig {
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter(TokenGateway tokenGateway) {
         return new JwtAuthenticationFilter(tokenGateway);
+    }
+
+    @Bean
+    public UserStatusFilter userStatusFilter(UserRepository userRepository) {
+        return new UserStatusFilter(userRepository);
     }
 
 }

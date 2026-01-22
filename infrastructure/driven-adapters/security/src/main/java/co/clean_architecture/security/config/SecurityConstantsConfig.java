@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "security")
-public class SecurityConstants {
+public class SecurityConstantsConfig {
 
     private String jwtKeyPrivate;
     private String jwtUserGenerator;

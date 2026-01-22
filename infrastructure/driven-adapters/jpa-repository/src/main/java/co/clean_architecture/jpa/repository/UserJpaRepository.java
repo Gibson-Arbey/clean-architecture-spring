@@ -58,4 +58,11 @@ public interface UserJpaRepository extends JpaRepository<UserEntity, Long> {
             @Param("limit") int limit,
             @Param("offset") int offset
     );
+
+    @Query("""
+        SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END 
+        FROM UserEntity u 
+        WHERE u.id = :id AND u.status = 'ACTIVE'
+    """)
+    boolean userStatusIsActive(@Param("id") Long id);
 }

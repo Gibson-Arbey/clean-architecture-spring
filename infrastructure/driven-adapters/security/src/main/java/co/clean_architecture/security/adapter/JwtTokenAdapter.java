@@ -1,8 +1,9 @@
-package co.clean_architecture.security.jwt;
+package co.clean_architecture.security.adapter;
 
 import co.clean_architecture.model.security.exception.UnauthorizedException;
 import co.clean_architecture.model.security.gateways.TokenGateway;
 import co.clean_architecture.security.exception.JwtAuthenticationException;
+import co.clean_architecture.security.util.JwtUtil;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -40,7 +41,7 @@ public class JwtTokenAdapter implements TokenGateway {
             return jwtUtil.validateToken(token);
         } catch (Exception ex) {
             throw new JwtAuthenticationException(
-                    new UnauthorizedException(ex.getMessage())
+                    ex.getMessage()
             );
         }
     }

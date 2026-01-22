@@ -1,6 +1,6 @@
-package co.clean_architecture.security.jwt;
+package co.clean_architecture.security.util;
 
-import co.clean_architecture.security.config.SecurityConstants;
+import co.clean_architecture.security.config.SecurityConstantsConfig;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
@@ -14,7 +14,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class JwtUtil {
 
-    private final SecurityConstants securityConstants;
+    private final SecurityConstantsConfig securityConstants;
 
     public String createToken(String username, Long userId, Set<String> roles) {
         Algorithm algorithm = Algorithm.HMAC256(securityConstants.getJwtKeyPrivate());

@@ -28,4 +28,6 @@ public interface UserRepository {
 
     boolean existsByEmailAndIdNot(String email, Long id);
 
+    boolean userStatusIsActive(Long id);
+
 }
